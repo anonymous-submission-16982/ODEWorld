@@ -1,11 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Anonymous Project Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>ODEWorld: Anonymous Project Page</title>
+
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5f6b7a;
+      --line: #e6e9ef;
+      --primary: #3b63f6;
+      --primary-soft: #eef2ff;
+      --accent: #12b886;
+      --shadow: 0 18px 45px rgba(23, 32, 51, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59, 99, 246, 0.16), transparent 32rem),
+        radial-gradient(circle at top right, rgba(18, 184, 134, 0.14), transparent 30rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 26px auto 18px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(23, 32, 51, 0.06);
+    }
+
+    .button.primary {
+      color: white;
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .panel {
+      margin: 36px auto 0;
+      max-width: 920px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .abstract {
+      margin: 0;
+      color: var(--muted);
+      text-align: left;
+      font-size: 16px;
+    }
+
+    section {
+      padding: 36px 0;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 12px 30px rgba(23, 32, 51, 0.05);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .placeholder {
+      min-height: 260px;
+      border: 1px dashed #b8c0d4;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(59, 99, 246, 0.08), rgba(18, 184, 134, 0.08)),
+        var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 24px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin: 8px 0;
+    }
+
+    .footer {
+      padding: 42px 0 56px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        align-items: flex-start;
+        gap: 16px;
+        flex-direction: column;
+      }
+
+      .grid,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Anonymous Project Page</h1>
-  <p>This page is under construction.</p>
+  <header class="container nav">
+    <div class="brand">ODEWorld</div>
+    <nav class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div class="badge">
+        <span class="dot"></span>
+        Anonymous Project Page
+      </div>
+
+      <h1>ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow</h1>
+
+      <p class="subtitle">
+        A continuous-time latent world model that learns physical-time dynamics through an ODE-governed latent velocity field.
+      </p>
+
+      <div class="actions">
+        <a class="button primary" href="#overview">Read Overview</a>
+        <a class="button" href="#resources">Resources</a>
+      </div>
+
+      <div class="panel">
+        <p class="abstract">
+          We introduce Physical-Time Flow, a continuous modeling approach that represents sequential dynamics as a latent velocity field evolving along physical time. Building upon this formulation, ODEWorld performs future prediction through temporal integration in a compact latent space, enabling arbitrary temporal resolution, backward prediction, long-horizon reconstruction, and planning-oriented representations for downstream robotic control.
+        </p>
+      </div>
+    </section>
+
+    <section id="overview" class="container">
+      <h2 class="section-title">Overview</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Continuous Dynamics</h3>
+          <p>
+            Instead of relying on fixed discrete prediction steps, the model treats temporal evolution as a continuous flow in physical time.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Latent ODE Prediction</h3>
+          <p>
+            Future states are generated by solving an ordinary differential equation in a compressed latent representation space.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Planning-Oriented Space</h3>
+          <p>
+            The learned dynamics-centric latent space provides compact and structured information for downstream policy learning.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="container">
+      <h2 class="section-title">Method</h2>
+
+      <div class="two-column">
+        <div class="card">
+          <h3>Physical-Time Flow</h3>
+          <p>
+            ODEWorld models the time-varying component of sequential observations with a continuous latent velocity field. The transition from one latent state to another is obtained by integrating this velocity field over physical time.
+          </p>
+          <ul class="list">
+            <li>Dynamical representation decoupling</li>
+            <li>Latent velocity field learning</li>
+            <li>ODE-based temporal integration</li>
+            <li>Continuous and bidirectional prediction</li>
+          </ul>
+        </div>
+
+        <div class="placeholder">
+          Method figure placeholder<br />
+          Add pipeline visualization here after anonymization.
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="container">
+      <h2 class="section-title">Results</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Video Prediction</h3>
+          <p>
+            Evaluates visual fidelity and temporal consistency under long-horizon prediction.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Temporal Flexibility</h3>
+          <p>
+            Supports arbitrary timestamp generation beyond fixed-frame discrete prediction.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Robotic Control</h3>
+          <p>
+            Uses learned latent dynamics as planning-oriented representations for downstream control tasks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="container">
+      <h2 class="section-title">Resources</h2>
+
+      <div class="card">
+        <h3>Anonymous Materials</h3>
+        <p>
+          Code, videos, and additional qualitative results will be provided in anonymized form. This page intentionally excludes author names, affiliations, institutional links, and non-anonymous metadata during the review period.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    Anonymous project page for a NeurIPS submission.
+  </footer>
 </body>
 </html>
