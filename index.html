@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>ODEWorld: Anonymous Project Page</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   <style>
     :root {
@@ -26,7 +38,7 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Times New Roman", Times, serif;
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(59, 99, 246, 0.16), transparent 32rem),
@@ -70,8 +82,91 @@
     }
 
     .hero {
-      padding: 76px 0 48px;
+      padding: 56px 0 40px;
+    }
+
+    .hero-top {
+      margin-bottom: 22px;
       text-align: center;
+    }
+
+    .hero-title-main {
+      margin: 14px auto 0;
+      max-width: 980px;
+      font-size: clamp(30px, 4.8vw, 54px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .hero-title-main .line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-top-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-top-actions .button {
+      min-width: 120px;
+      padding: 9px 20px;
+      border-radius: 14px;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      color: #2f3747;
+      border-color: #d5dbe6;
+      background: #f0f3f8;
+      box-shadow: 0 6px 16px rgba(23, 32, 51, 0.08);
+    }
+
+    .hero-top-actions .button.primary {
+      color: #2f3747;
+      border-color: #d5dbe6;
+      background: #f0f3f8;
+    }
+
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-media {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-copy {
+      text-align: left;
+    }
+
+    .hero-copy h1 {
+      max-width: none;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+
+    .hero-side-title {
+      margin: 0 0 12px;
+      max-width: none;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
     }
 
     .badge {
@@ -96,7 +191,7 @@
 
     h1 {
       max-width: 920px;
-      margin: 26px auto 18px;
+      margin: 18px 0 14px;
       font-size: clamp(42px, 7vw, 76px);
       line-height: 1.02;
       letter-spacing: -0.06em;
@@ -104,18 +199,95 @@
 
     .subtitle {
       max-width: 780px;
-      margin: 0 auto;
+      margin: 0;
       color: var(--muted);
-      font-size: 20px;
-      line-height: 1.7;
+      font-size: 18px;
+      line-height: 1.75;
     }
 
     .actions {
       margin-top: 34px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
       gap: 14px;
+    }
+
+    .hero-points {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-points li {
+      margin: 8px 0;
+    }
+
+    .hero-divider-title {
+      margin: 22px 0 14px;
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .hero-divider-title.critical-designs {
+      margin-top: 22px;
+      margin-bottom: 0px;
+    }
+
+    .hero-followup {
+      margin-top: 18px;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+    }
+
+    .hero-followup .card {
+      padding: 22px;
+    }
+
+    .equation-line {
+      margin: 8px 0 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f9fbff;
+      color: #2f3747;
+      font-size: 15px;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+
+    .ptflow-text-block {
+      margin-top: 8px;
+      padding: 24px;
+    }
+
+    .ptflow-text-block.critical-designs-block {
+      margin-top: 0;
+    }
+
+    .ptflow-text-block .subtitle {
+      max-width: none;
+    }
+
+    .ptflow-subsection {
+      margin-top: 0px;
+    }
+
+    .ptflow-subsection h4 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .ptflow-subsection p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
     }
 
     .button {
@@ -206,6 +378,99 @@
       padding: 24px;
     }
 
+    .media-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 12px 30px rgba(23, 32, 51, 0.05);
+    }
+
+    .media {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .caption {
+      margin: 12px 4px 2px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .quant-table-wrap {
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    .quant-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      border: 1px solid var(--line);
+      background: #fff;
+      table-layout: fixed;
+    }
+
+    .quant-table th,
+    .quant-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .quant-table thead th {
+      background: #f6f8fc;
+      font-weight: 700;
+      color: #2f3747;
+    }
+
+    .quant-table td:first-child,
+    .quant-table th:first-child {
+      text-align: left;
+      white-space: nowrap;
+      width: 170px;
+    }
+
+    .quant-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .quant-table .ours td {
+      background: #eef3ff;
+      font-weight: 700;
+    }
+
+    .links {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--primary-soft);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
     .two-column {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -238,12 +503,25 @@
       }
 
       .grid,
-      .two-column {
+      .two-column,
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-split {
         grid-template-columns: 1fr;
       }
 
       .hero {
         padding-top: 42px;
+      }
+
+      .hero-title-main {
+        font-size: clamp(30px, 10vw, 50px);
+      }
+
+      .hero-title-main .line {
+        white-space: normal;
       }
 
       .subtitle {
@@ -254,7 +532,7 @@
 </head>
 
 <body>
-  <header class="container nav">
+  <!-- <header class="container nav">
     <div class="brand">ODEWorld</div>
     <nav class="nav-links">
       <a href="#overview">Overview</a>
@@ -262,122 +540,453 @@
       <a href="#results">Results</a>
       <a href="#resources">Resources</a>
     </nav>
-  </header>
+  </header> -->
 
   <main>
     <section class="container hero">
-      <div class="badge">
-        <span class="dot"></span>
-        Anonymous Project Page
-      </div>
-
-      <h1>ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow</h1>
-
-      <p class="subtitle">
-        A continuous-time latent world model that learns physical-time dynamics through an ODE-governed latent velocity field.
-      </p>
-
-      <div class="actions">
-        <a class="button primary" href="#overview">Read Overview</a>
-        <a class="button" href="#resources">Resources</a>
-      </div>
-
-      <div class="panel">
-        <p class="abstract">
-          We introduce Physical-Time Flow, a continuous modeling approach that represents sequential dynamics as a latent velocity field evolving along physical time. Building upon this formulation, ODEWorld performs future prediction through temporal integration in a compact latent space, enabling arbitrary temporal resolution, backward prediction, long-horizon reconstruction, and planning-oriented representations for downstream robotic control.
-        </p>
-      </div>
-    </section>
-
-    <section id="overview" class="container">
-      <h2 class="section-title">Overview</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Continuous Dynamics</h3>
-          <p>
-            Instead of relying on fixed discrete prediction steps, the model treats temporal evolution as a continuous flow in physical time.
-          </p>
+      <div class="hero-top">
+        <h2 class="hero-title-main">
+          <span class="line">ODEWorld: A Continuous Predictive Architecture</span>
+          <span class="line">via Physical-Time Flow</span>
+        </h2>
+        <div class="badge">
+          <span class="dot"></span>
+          Anonymous Project Page
         </div>
-
-        <div class="card">
-          <h3>Latent ODE Prediction</h3>
-          <p>
-            Future states are generated by solving an ordinary differential equation in a compressed latent representation space.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Planning-Oriented Space</h3>
-          <p>
-            The learned dynamics-centric latent space provides compact and structured information for downstream policy learning.
-          </p>
+        <div class="hero-top-actions">
+          <a class="button primary" href="#">Paper</a>
+          <a class="button" href="#">Code</a>
         </div>
       </div>
-    </section>
 
-    <section id="method" class="container">
-      <h2 class="section-title">Method</h2>
+      <h2 class="hero-divider-title">Physical-Time World Modeling</h2>
+      <div class="hero-split">
+        <div class="hero-media">
+          <img src="./figures/sample03_0.45_Aligned.png" alt="Velocity field and latent planning visualization" />
+        </div>
 
-      <div class="two-column">
-        <div class="card">
-          <h3>Physical-Time Flow</h3>
-          <p>
-            ODEWorld models the time-varying component of sequential observations with a continuous latent velocity field. The transition from one latent state to another is obtained by integrating this velocity field over physical time.
+        <div class="hero-copy">
+          <p class="subtitle">
+            <!-- PT-Flow models sequential dynamics as a continuous latent velocity field in physical time, rather than fixed discrete next-step prediction. -->
+            PT-Flow models sequential dynamics as a continuous latent velocity field in physical time, rather than fixed discrete next-step prediction.
           </p>
-          <ul class="list">
-            <li>Dynamical representation decoupling</li>
-            <li>Latent velocity field learning</li>
-            <li>ODE-based temporal integration</li>
-            <li>Continuous and bidirectional prediction</li>
+
+          <ul class="hero-points">
+            <li>The prediction of the future can be recast as temporal integration via an ODE solver in the compressed latent space.</li>
+            <li>Supports arbitrary timestamps and even backward prediction through ODE integration, which is impossible for most discrete-time models.</li>
+            <!-- <li>Dynamical representation decoupling removes static distractions and focuses on true temporal dynamics.</li>
+            <li>Direct first-order supervision (JVP-based) improves latent smoothness and mitigates representation collapse.</li> -->
+            <li>Compact latent planning enables efficient rollout for both video generation and control guidance.</li>
           </ul>
         </div>
+      </div>
 
-        <div class="placeholder">
-          Method figure placeholder<br />
-          Add pipeline visualization here after anonymization.
+      <h2 class="hero-divider-title critical-designs">Critical Designs</h2>
+        <div class="ptflow-text-block critical-designs-block">
+          <p class="subtitle">
+            The core idea of PT-Flow is to capture the underlying dynamics as a continuous velocity field within a proper latent space.
+            Let \( s_t \in \mathbb{R}^{d_s} \) denote the state input at physical time \( t \), and
+            \( z_t \in \mathbb{R}^{d_z} \) be the latent representation of \( s_t \).
+            Here, \( t \) represents the physical time elapsed after starting at the initial state \( s_0 \).
+            The dynamics are then modeled by learning a time-dependent velocity field via an ODE formulation.
+          </p>
+        
+          <div>
+            \[
+            \frac{dz_t}{dt} = v_{\theta}(z_t, t; z_0, c) \implies
+            z_T = z_0 + \int_0^T v_{\theta}(z_t, t; z_0, c)\,dt \tag{1}
+            \]
+          </div>
+
+          <p class="subtitle">
+            To enable such continuous-time modeling, PT-Flow features two key designs:
+            <!-- (1) dynamical representation decoupling, which isolates time-varying dynamics from static content, 
+            and (2) direct first-order supervision, which learns latent velocity fields with approximated ground truth. -->
+            <!-- (1) dynamical representation decoupling and (2) direct first-order supervision.  -->
+            <!-- These designs lead to a new predictive architecture, in which the prediction of
+            the future can be recast as temporal integration via an ODE solver in the compressed latent space, in
+            some sense similar to flow matching <a href="https://arxiv.org/abs/2306.08516">[14]</a>, but operating in physical time. -->
+            <!-- The former decouples the time-varying, dynamics-related information from the data into a clean, ODE-compatible dynamical representation space, getting rid of the nuanced background and time-invariant details for efficient learning. The latter directly supervises the latent velocity field with the approximated ground truth latent velocities through an elegant Jacobian-vector product (JVP) projection.   -->
+          </p>
+
+        
+
+          <div class="ptflow-subsection">
+            <p>
+              <strong>(1) Dynamical Representation Decoupling.</strong> PT-Flow isolates time-varying dynamics from static content by learning initial-state-conditioned dynamics encoder
+              \( f_{\text{dyn}} \) and decoder \( g_{\text{dyn}} \), enabling the latent to focus on dynamics while static context is handled through conditioning.
+            </p>
+            <div>
+              \[
+              \mathcal{L}_{\text{dyn-recon}} =
+              \mathbb{E}_{s_0, s_t \sim \mathcal{D}}
+              \left\| g_{\text{dyn}}(f_{\text{dyn}}(s_t; s_0); s_0) - s_t \right\|^2 \tag{2}
+              \]
+              </div>
+          </div>
+
+          <div class="ptflow-subsection">
+            <p>
+              <strong>(2) Direct First-Order Supervision.</strong> PT-Flow directly supervises the latent velocity field with
+              the approximated ground truth latent velocities through an elegant Jacobian-vector product (JVP) projection. 
+              Note that the time derivative of the latent satisfies:
+            </p>
+            <div class="equation">
+              \[
+              \dot{z}_t = \frac{d z_t}{d t}
+              = \frac{d f_{\text{dyn}}(s_t; s_0)}{d t}
+              = \frac{\partial f_{\text{dyn}}(s_t; s_0)}{\partial s_t} \cdot \frac{d s_t}{d t}
+              + \bcancel{\frac{\partial f_{\text{dyn}}(s_t; s_0)}{\partial s_0} \cdot \frac{d s_0}{d t}}
+              = \frac{\partial f_{\text{dyn}}(s_t; s_0)}{\partial s_t} \cdot \dot{s}_t \tag{3}
+              \]
+            </div>
+            <p>
+              As \( s_0 \) is time-invariant, hence \( \frac{d s_0}{d t} = 0 \) and the related term vanishes.
+              This enables us to introduce the following learning objective for the latent velocity field \( v_{\theta} \),
+              which directly supervises it with the approximated ground-truth latent velocities \( \dot{z}_t \).
+            </p>
+            <div>
+              \[
+              \mathcal{L}_v =
+              \mathbb{E}_{s_0, s_t \sim \mathcal{D}, t}
+              \left\|
+              v_\theta(z_t, t; z_0, c)
+              - \texttt{sg}\left(
+              \text{JVP}(f_{\text{dyn}}(s_t; s_0), \dot{s}_t)
+              \right)
+              \right\|^2 \tag{4}
+              \] 
+              </div>
+          </div>
+        </div>
+      
+
+      <h2 class="hero-divider-title critical-designs">ODEWorld: Latent World Modeling via PT-Flow</h2>
+        <div class="ptflow-text-block critical-designs-block">
+          <!-- <p class="subtitle">
+            We instantiate the PT-Flow paradigm as ODEWorld, a highly versatile and efficient 
+            continuous-time predictive architecture for both high-fidelity video generation
+            and effective robotic policy learning. Apart from building PT-Flow, we first employ a frozen, pre-trained DINOv2
+            encoder as our vision backbone \( f_obs \) to project high-dimensional raw image observations \( x_t \)
+            into a compressed feature space \( s_t \). Correspondingly, we
+            train a dedicated image decoder gobs to reconstruct the DINO feature back to image space \( \hat{x}_t \) for
+            video generation, following the same recipe with RAE. -->
+          <!-- </p> -->
+
+          <p class="subtitle">
+            We instantiate the PT-Flow paradigm as ODEWorld, a highly versatile and efficient continuous-time predictive architecture for both high-fidelity video generation and effective robotic policy learning.
+            Apart from building PT-Flow, we first employ a frozen DINOv2 encoder as our vision backbone \( f_{\text{obs}} \) 
+            and a dedicated image decoder \( g_{\text{obs}} \) to reconstruct DINO features back to images \( \hat{x}_t \) for video generation.
+            We further embed PT-Flow within the DINO feature space.
+          </p>
+          
+          <div class="hero-media">
+            <img src="./figures/ODEWorld_framework.png" alt="ODEWorld framework" />
+          </div>
+
+          <p class="subtitle">
+            In our experiments, we find that a single token is sufficient to model \( z_t \) while achieving strong performance.
+            Specifically, \( z_t \in \mathbb{R}^{1 \times 768} \) is highly compact compared to
+            \( s_t \in \mathbb{R}^{16 \times 16 \times 768} \) in the original DINO space.
+            More importantly, this result further supports the key insight of latent world modeling:
+            raw pixels contain substantial redundancy, while the underlying dynamics can be effectively captured
+            by a much smaller latent representation.
+          </p>
+
+      </div>
+
+      <h2 class="hero-divider-title">Bidirectional &amp; Any-Resolution Generation</h2>
+      <div class="results-grid">
+        <div class="media-card">
+          <img class="media" src="./figures/forward-backward-p001.png" alt="Forward and backward prediction" />
+          <p class="caption">
+            <strong>Bidirectional generation.</strong> Continuous-time formulation enables both forward and backward prediction with physically plausible motion.
+          </p>
+        </div>
+
+        <div class="media-card">
+          <img class="media" src="./figures/Any-resolution-p001.png" alt="Any-resolution generation" />
+          <p class="caption">
+            <strong>Any-resolution temporal generation.</strong> ODEWorld supports flexible temporal speed and can recover missing intermediate observations.
+          </p>
         </div>
       </div>
-    </section>
 
-    <section id="results" class="container">
-      <h2 class="section-title">Results</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Video Prediction</h3>
-          <p>
-            Evaluates visual fidelity and temporal consistency under long-horizon prediction.
+      <h2 class="hero-divider-title critical-designs">Latent Smoothness Experiments</h2>
+        <div class="ptflow-text-block critical-designs-block">
+          
+          <p class="subtitle">
+            <strong>Latent space analysis.</strong>We compare the latent space of ODEWorld against the raw DINO feature space and the latent space of a discrete next-step predictive baseline.
+            PCA visualizations of latent trajectories across multiple LIBERO tasks show that ODEWorld produces the smoothest latent trajectories.
+            Crucially, while improving dynamical smoothness, ODEWorld preserves a manifold topology remarkably similar to that of the original DINO feature space.      
           </p>
+
+          <div style="text-align: center;">
+            <img
+              src="./figures/latent-smoothness_ablation-p001-trimmed.png"
+              alt="Latent smoothness across different latent spaces"
+              style="width: 90%; height: auto;"
+            />
+          </div>
+          
+          <p class="subtitle">
+            <strong>Ablation on Dynamical Decoupling.</strong>
+            We observe that Decoupling is critical for continuous dynamics modeling. 
+            Without separating static context from the state space, the learned latent trajectories 
+            become noisy and unstable. Conditioning on \( s_0 \) enables the latent representation to focus on dynamics, 
+            leading to smooth and meaningful latent flows.      
+          </p>
+
+          <div style="text-align: center;">
+            <img
+              src="./figures/567-p001.png"
+              alt="Ablation on Dynamical Decoupling."
+              style="width: 90%; height: auto;"
+            />
+          </div>
+
         </div>
 
-        <div class="card">
-          <h3>Temporal Flexibility</h3>
-          <p>
-            Supports arbitrary timestamp generation beyond fixed-frame discrete prediction.
+        
+        <h2 class="hero-divider-title critical-designs">Quantitative Comparisons for Video Generation</h2>
+        <div class="ptflow-text-block critical-designs-block">
+          <p class="subtitle">
+            <strong>Evaluation of Quality and Efficiency.</strong>
+            ODEWorld consistently outperforms baselines in both pixel-level 
+            and perceptual metrics across short- and long-term horizons, 
+            while achieving higher inference speed and a smaller model size.          
           </p>
+
+          <div class="quant-table-wrap">
+            <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="text-align:center;">Method</th>
+                  <th colspan="3" style="text-align:center;">Short Horizon @16 frames</th>
+                  <th colspan="3" style="text-align:center;">Long Horizon @64 frames</th>
+                  <th rowspan="2" style="text-align:center;">Params. ↓</th>
+                </tr>
+                <tr>
+                  <th style="text-align:center;">PSNR ↑</th>
+                  <th style="text-align:center;">LPIPS ↓</th>
+                  <th style="text-align:center;">FPS ↑</th>
+                  <th style="text-align:center;">PSNR ↑</th>
+                  <th style="text-align:center;">LPIPS ↓</th>
+                  <th style="text-align:center;">FPS ↑</th>
+                </tr>
+              </thead>
+            
+              <tbody>
+                <tr>
+                  <td style="text-align:center;">LDP</td>
+                  <td style="text-align:center;">16.33</td>
+                  <td style="text-align:center;">0.489</td>
+                  <td style="text-align:center;">0.906</td>
+                  <td style="text-align:center;">16.27</td>
+                  <td style="text-align:center;">0.461</td>
+                  <td style="text-align:center;">0.253</td>
+                  <td style="text-align:center;">110.9 M</td>
+                </tr>
+            
+                <tr>
+                  <td style="text-align:center;">V-JEPA 2</td>
+                  <td style="text-align:center;">17.60</td>
+                  <td style="text-align:center;">0.157</td>
+                  <td style="text-align:center;">8.118</td>
+                  <td style="text-align:center;">16.47</td>
+                  <td style="text-align:center;">0.166</td>
+                  <td style="text-align:center;">1.615</td>
+                  <td style="text-align:center;">452.34 M</td>
+                </tr>
+            
+                <tr class="ours">
+                  <td style="text-align:center;"><b>ODEWorld (Ours)</b></td>
+                  <td style="text-align:center;">20.53</td>
+                  <td style="text-align:center;">0.109</td>
+                  <td style="text-align:center;">33.67</td>
+                  <td style="text-align:center;">19.46</td>
+                  <td style="text-align:center;">0.134</td>
+                  <td style="text-align:center;">13.83</td>
+                  <td style="text-align:center;">86.08 M</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="subtitle" style="margin-top: 16px;">
+            <strong>Comparison of Generated Samples.</strong> 
+            ODEWorld enables long-horizon video generation, 
+            producing temporally coherent and physically plausible videos that 
+            closely match the ground-truth observations. 
+            In contrast, baseline methods often suffer from blurry visual predictions 
+            and hallucinations in long-horizon generation.
+          </p>
+          <div style="text-align: center;">
+            <img
+              src="./figures/ODEWorld_libero-p001.png"
+              alt="LIBERO qualitative comparison among ODEWorld, LDP, and V-JEPA 2"
+              style="width: 92%; height: auto;"
+            />
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Robotic Control</h3>
-          <p>
-            Uses learned latent dynamics as planning-oriented representations for downstream control tasks.
+
+        <h2 class="hero-divider-title critical-designs">Quantitative Comparisons for Policy Learning</h2>
+        <div class="ptflow-text-block critical-designs-block">
+          <p class="subtitle">
+            <strong>ODEWorld for Policy Learning.</strong>
+            We assess how ODEWorld can empower downstream policy learning by inferring latent subgoals as guidance.
+            We instantiate three guidance paradigms: (1) velocity-conditioned policy \( \pi(a \mid z, c, v) \),
+            (2) single-subgoal policy \( \pi(a \mid z, c, \hat{z}_{\tau}) \), where \( \tau = 0.25 \),
+            (3) sequential-subgoal policy \( \pi(a \mid z, c, \{\hat{z}_{\tau_i}\}_{i=1}^{n}) \), where \( n = 5 \), \( \tau_i = 0.05 i \), 
+            where subgoals are generated via ODE integration. \( c \) denotes image goal and language instruction.  Results show that all ODEWorld variants outperform baselines on LIBERO-LONG tasks,
+            with the sequential-subgoal paradigm achieving the highest success rate. This performance gain demonstrates the high-fidelity temporal consistency of ODEWorld rollouts.
+            and such consistent sequential subgoal guidance effectively benefits downstream policy learning.
           </p>
+
+          <div class="quant-table-wrap" style="overflow-x:auto;">
+            <!-- <table class="quant-table" style="min-width:1120px; border-collapse:collapse; text-align:center;"> -->
+              <table class="quant-table" style="width:100%; table-layout:fixed; border-collapse:collapse; text-align:center; font-size:12px;">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">Method</th>
+                  <th style="text-align:center;">1</th>
+                  <th style="text-align:center;">2</th>
+                  <th style="text-align:center;">3</th>
+                  <th style="text-align:center;">4</th>
+                  <th style="text-align:center;">5</th>
+                  <th style="text-align:center;">6</th>
+                  <th style="text-align:center;">7</th>
+                  <th style="text-align:center;">8</th>
+                  <th style="text-align:center;">9</th>
+                  <th style="text-align:center;">10</th>
+                  <th style="text-align:center;">Avg. Suc ↑</th>
+                </tr>
+              </thead>
+          
+              <tbody>
+          
+                <tr>
+                  <td style="text-align:center;">GLCBC</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">93.3</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">93.3</td>
+                  <td style="text-align:center;">76.6</td>
+                  <td style="text-align:center;">63.3</td>
+                  <td style="text-align:center;">73.3</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">50.0</td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;">78.0</td>
+                </tr>
+          
+                <tr>
+                  <td style="text-align:center;">SuSIE</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">63.3</td>
+                  <td style="text-align:center;"><b>96.6</b></td>
+                  <td style="text-align:center;"><b>100.0</b></td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">39.9</td>
+                  <td style="text-align:center;">53.3</td>
+                  <td style="text-align:center;">76.6</td>
+                  <td style="text-align:center;">76.3</td>
+                </tr>
+          
+                <tr>
+                  <td style="text-align:center;">Seer</td>
+                  <td style="text-align:center;">88.3</td>
+                  <td style="text-align:center;">90.0</td>
+                  <td style="text-align:center;">91.6</td>
+                  <td style="text-align:center;">81.6</td>
+                  <td style="text-align:center;">85.0</td>
+                  <td style="text-align:center;">65.0</td>
+                  <td style="text-align:center;"><b>86.6</b></td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;">51.6</td>
+                  <td style="text-align:center;">66.6</td>
+                  <td style="text-align:center;">78.6</td>
+                </tr>
+          
+                <tr>
+                  <td style="text-align:center;"><b>ODEWorld <br> (Velocity)</b></td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;">93.3</td>
+                  <td style="text-align:center;">76.6</td>
+                  <td style="text-align:center;"><b>100.0</b></td>
+                  <td style="text-align:center;">73.3</td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">86.6</td>
+                  <td style="text-align:center;"><b>66.6</b></td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">82.3</td>
+                </tr>
+          
+                <tr>
+                  <td style="text-align:center;"><b>ODEWorld <br> (Single subgoal)</b></td>
+                  <td style="text-align:center;">86.6</td>
+                  <td style="text-align:center;">86.6</td>
+                  <td style="text-align:center;">86.6</td>
+                  <td style="text-align:center;">96.6</td>
+                  <td style="text-align:center;"><b>86.6</b></td>
+                  <td style="text-align:center;">86.6</td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;">83.3</td>
+                  <td style="text-align:center;">46.6</td>
+                  <td style="text-align:center;"><b>86.6</b></td>
+                  <td style="text-align:center;">82.6</td>
+                </tr>
+          
+                <tr>
+                  <td style="text-align:center;"><b>ODEWorld <br> (Sequential subgoals)</b></td>
+                  <td style="text-align:center;"><b>90.0</b></td>
+                  <td style="text-align:center;"><b>96.6</b></td>
+                  <td style="text-align:center;">90.0</td>
+                  <td style="text-align:center;"><b>100.0</b></td>
+                  <td style="text-align:center;">73.3</td>
+                  <td style="text-align:center;"><b>90.0</b></td>
+                  <td style="text-align:center;">76.6</td>
+                  <td style="text-align:center;"><b>90.0</b></td>
+                  <td style="text-align:center;">60.0</td>
+                  <td style="text-align:center;">80.0</td>
+                  <td style="text-align:center;"><b>83.6</b></td>
+                </tr>
+          
+              </tbody>
+            </table>
+          </div>
+
         </div>
+
+      <!-- <h2 class="hero-divider-title">Latent Smoothness Experiments</h2>
+      <p class="subtitle">
+        <strong>Latent space analysis.</strong>We compare the latent space of ODEWorld against the raw DINO feature space and the latent space of a discrete next-step predictive baseline.
+        PCA visualizations of latent trajectories across multiple LIBERO tasks show that ODEWorld produces the smoothest latent trajectories.
+        Crucially, while improving dynamical smoothness, ODEWorld preserves a manifold topology remarkably similar to that of the original DINO feature space.      
+      </p>
+      <div class="hero-media">
+        <img src="./figures/latent-smoothness_ablation-p001.png" alt="Latent smoothness across different latent spaces"/>
       </div>
-    </section>
 
-    <section id="resources" class="container">
-      <h2 class="section-title">Resources</h2>
-
-      <div class="card">
-        <h3>Anonymous Materials</h3>
-        <p>
-          Code, videos, and additional qualitative results will be provided in anonymized form. This page intentionally excludes author names, affiliations, institutional links, and non-anonymous metadata during the review period.
+      <div class="media-card">
+        <img class="media" src="./figures/latent-smoothness_ablation-p001.png" alt="Latent smoothness across different latent spaces" />
+        <p class="caption">
+          <strong>Figure 2: Data trajectories in different latent spaces.</strong> ODEWorld produces significantly smoother trajectories in its dynamical latent space across various LIBERO tasks compared to the latent spaces of DINO and the next-step prediction baseline.
         </p>
       </div>
+
+      <div class="media-card" style="margin-top: 16px;">
+        <img class="media" src="./figures/latent-smoothness_ablation-p002.png" alt="Ablation on dynamical representation decoupling" />
+        <p class="caption">
+          <strong>Decoupling Ablation.</strong> We observe that decoupling is critical for continuous dynamics modeling. Without separating static context from the state space, the learned latent trajectories become noisy and unstable. Conditioning on \( s_0 \) enables the latent representation to focus on dynamics, leading to smooth and meaningful latent flows.
+        </p>
+      </div> -->
+
     </section>
-  </main>
 
   <footer class="container footer">
     Anonymous project page for a NeurIPS submission.
