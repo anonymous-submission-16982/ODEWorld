@@ -302,6 +302,52 @@
       background: var(--accent);
     }
 
+    /* ───── rebuttal callout ───── */
+    .rebuttal-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 28px 0 8px;
+      padding: 0;
+      text-align: left;
+      color: #c62828;
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .rebuttal-banner.rebuttal-banner-end {
+      margin: 28px 0 8px;
+    }
+
+    html[data-theme="dark"] .rebuttal-banner {
+      color: #ff6b6b;
+    }
+
+    .rebuttal-banner .rebuttal-horn {
+      flex: 0 0 auto;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .rebuttal-block {
+      margin-top: 10px;
+    }
+
+    .rebuttal-block > .hero-divider-title {
+      margin-top: 40px;
+    }
+
+    .rebuttal-block > .hero-divider-title:first-of-type {
+      margin-top: 32px;
+    }
+
+    .rebuttal-block > .subtitle {
+      margin: 8px 0 14px;
+    }
+
     /* ───── section titles with gilt rule ornament ───── */
     .hero-divider-title {
       margin: 56px 0 18px;
@@ -1197,18 +1243,12 @@
         </div> -->
       </div>
 
-      <h2 class="hero-divider-title e3">Physical-Time World Modeling</h2>
-      <div class="ptflow-text-block e5">
-        <p class="subtitle">
-          PT-Flow models dynamics as a <strong>continuous latent velocity field in physical time</strong>, rather than discrete next-step prediction.
-        </p>
+      <p class="rebuttal-banner">
+        <span class="rebuttal-horn" aria-hidden="true">&#128227;</span>
+        Rebuttal updates below.
+      </p>
 
-        <ul class="hero-points">
-          <li>ODE-based future prediction in compressed latent space.</li>
-          <li>Arbitrary-time queries, and even backward prediction.</li>
-          <li>Compact latents for efficient rollouts.</li>
-        </ul>
-
+      <div class="rebuttal-block ptflow-text-block e5">
         <p class="subtitle">
           <strong>Explore trajectory generation with ODEWorld.</strong>
           Continuous-time dynamics enable denser temporal sampling beyond the training data while maintaining visually plausible rollouts.
@@ -1443,6 +1483,370 @@
             </div>
           </div>
         </div>
+
+
+        <h2 class="hero-divider-title">Additional Comparison vs VPP</h2>
+        <p class="subtitle">
+          Compared with Video Prediction Policy (VPP), a strong pixel-level discrete-time predictor,
+          ODEWorld achieves higher video generation quality and stronger LIBERO-LONG policy performance under the same setting.
+        </p>
+        <h3 class="traj-dataset-title">Video generation quality</h3>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="text-align:center;">Method</th>
+                <th colspan="2" style="text-align:center;">Short Horizon @16 frames</th>
+                <th colspan="2" style="text-align:center;">Long Horizon @64 frames</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">VPP</td>
+                <td style="text-align:center;">17.01</td>
+                <td style="text-align:center;">0.275</td>
+                <td style="text-align:center;">13.43</td>
+                <td style="text-align:center;">0.530</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>ODEWorld (Ours)</b></td>
+                <td style="text-align:center;"><b>20.53</b></td>
+                <td style="text-align:center;"><b>0.109</b></td>
+                <td style="text-align:center;"><b>19.46</b></td>
+                <td style="text-align:center;"><b>0.134</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">LIBERO-LONG policy performance</h3>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Method</th>
+                <th style="text-align:center;">Avg. Suc &uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">VPP</td>
+                <td style="text-align:center;">81.0</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>ODEWorld (Sequential subgoals)</b></td>
+                <td style="text-align:center;"><b>83.6</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="hero-divider-title">Real-Robot Control on Agilex</h2>
+        <p class="subtitle">
+          We evaluate ODEWorld on a bi-manual Agilex robot with X-VLA as the policy backbone,
+          augmented by sequential subgoals planned by ODEWorld.
+          Across four tasks, average success rate improves from 55% to 80%.
+        </p>
+        <div class="quant-table-wrap" style="overflow-x:auto;">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Method</th>
+                <th style="text-align:center;">Shrimp</th>
+                <th style="text-align:center;">Mouse</th>
+                <th style="text-align:center;">Pen</th>
+                <th style="text-align:center;">Bi-manual</th>
+                <th style="text-align:center;">Average</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">X-VLA</td>
+                <td style="text-align:center;">80%</td>
+                <td style="text-align:center;">60%</td>
+                <td style="text-align:center;">30%</td>
+                <td style="text-align:center;">50%</td>
+                <td style="text-align:center;">55%</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>X-VLA + ODEWorld<br>(Sequential subgoals)</b></td>
+                <td style="text-align:center;"><b>90%</b></td>
+                <td style="text-align:center;"><b>80%</b></td>
+                <td style="text-align:center;"><b>70%</b></td>
+                <td style="text-align:center;"><b>80%</b></td>
+                <td style="text-align:center;"><b>80%</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="hero-divider-title">Ablations on Key Design Choices</h2>
+        <p class="subtitle">
+          Additional ablations on the vision backbone, JVP supervision, dynamical decoupling, and latent token count.
+        </p>
+
+        <h3 class="traj-dataset-title">Feature extractor</h3>
+        <p class="subtitle">
+          We compare DINOv2 with SigLIP&nbsp;2 and LIV. ODEWorld works robustly with alternative vision backbones,
+          while DINOv2 remains best on both short- and long-horizon prediction.
+        </p>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="text-align:center;">Method</th>
+                <th colspan="2" style="text-align:center;">Short Horizon @16 frames</th>
+                <th colspan="2" style="text-align:center;">Long Horizon @64 frames</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">LIV</td>
+                <td style="text-align:center;">19.90</td>
+                <td style="text-align:center;">0.158</td>
+                <td style="text-align:center;">18.25</td>
+                <td style="text-align:center;">0.237</td>
+              </tr>
+              <tr>
+                <td style="text-align:center;">SigLIP 2</td>
+                <td style="text-align:center;">20.38</td>
+                <td style="text-align:center;">0.133</td>
+                <td style="text-align:center;">19.21</td>
+                <td style="text-align:center;">0.168</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>DINOv2</b></td>
+                <td style="text-align:center;"><b>20.53</b></td>
+                <td style="text-align:center;"><b>0.109</b></td>
+                <td style="text-align:center;"><b>19.46</b></td>
+                <td style="text-align:center;"><b>0.134</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">First-order JVP supervision vs consistency loss</h3>
+        <p class="subtitle">
+          Replacing direct first-order JVP supervision with a traditional consistency loss
+          (indirect zero-order reconstruction of future frames via ODE planning) leads to optimization difficulties,
+          much weaker short-horizon prediction, and visually implausible long-horizon rollouts.
+        </p>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Method</th>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">consistency-loss supervision</td>
+                <td style="text-align:center;">12.71</td>
+                <td style="text-align:center;">0.751</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>ours (JVP)</b></td>
+                <td style="text-align:center;"><b>20.53</b></td>
+                <td style="text-align:center;"><b>0.109</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">Dynamical representation decoupling</h3>
+        <p class="subtitle">
+          Without initial-state-conditioned decoupling, the model uses a high-dimensional non-decoupled latent
+          (\(z_t' \in \mathbb{R}^{256\times 768}\)). Decoupling substantially improves inference speed and long-horizon LPIPS
+          by letting the velocity model focus on temporal evolution rather than static appearance.
+        </p>
+        <div class="quant-table-wrap" style="overflow-x:auto;">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="text-align:center;">Method</th>
+                <th colspan="3" style="text-align:center;">Short Horizon @16 frames</th>
+                <th colspan="3" style="text-align:center;">Long Horizon @64 frames</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+                <th style="text-align:center;">FPS &uarr;</th>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+                <th style="text-align:center;">FPS &uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">w/o decouple</td>
+                <td style="text-align:center;"><b>20.65</b></td>
+                <td style="text-align:center;">0.127</td>
+                <td style="text-align:center;">7.301</td>
+                <td style="text-align:center;"><b>19.53</b></td>
+                <td style="text-align:center;">0.212</td>
+                <td style="text-align:center;">2.29</td>
+              </tr>
+              <tr class="ours">
+                <td style="text-align:center;"><b>Ours</b></td>
+                <td style="text-align:center;">20.53</td>
+                <td style="text-align:center;"><b>0.109</b></td>
+                <td style="text-align:center;"><b>33.67</b></td>
+                <td style="text-align:center;">19.46</td>
+                <td style="text-align:center;"><b>0.134</b></td>
+                <td style="text-align:center;"><b>13.83</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">Number of latent tokens</h3>
+        <p class="subtitle">
+          Increasing tokens from 1 to 4 yields comparable performance, indicating a single latent token is already
+          sufficient to capture the underlying dynamics with a compact representation.
+        </p>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="text-align:center;"># Tokens</th>
+                <th colspan="2" style="text-align:center;">Short Horizon @16 frames</th>
+                <th colspan="2" style="text-align:center;">Long Horizon @64 frames</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+                <th style="text-align:center;">PSNR &uarr;</th>
+                <th style="text-align:center;">LPIPS &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ours">
+                <td style="text-align:center;"><b>1</b></td>
+                <td style="text-align:center;">20.53</td>
+                <td style="text-align:center;"><b>0.109</b></td>
+                <td style="text-align:center;">19.46</td>
+                <td style="text-align:center;"><b>0.134</b></td>
+              </tr>
+              <tr>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">20.99</td>
+                <td style="text-align:center;">0.114</td>
+                <td style="text-align:center;">19.68</td>
+                <td style="text-align:center;">0.148</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="hero-divider-title">Representation Collapse Analysis</h2>
+        <p class="subtitle">
+          Following RankMe, we measure the effective rank of mean-centered representations.
+          ODEWorld&rsquo;s 768-d dynamics latent maintains effective rank above 400 across planning horizons,
+          higher than pooled V-JEPA 2 features (~200 / 1024) and DINOv2 CLS (~376 / 768).
+        </p>
+
+        <h3 class="traj-dataset-title">Centered RankMe of ODEWorld (effective rank / latent dim)</h3>
+        <div class="quant-table-wrap" style="overflow-x:auto;">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Horizon</th>
+                <th style="text-align:center;">1</th>
+                <th style="text-align:center;">4</th>
+                <th style="text-align:center;">8</th>
+                <th style="text-align:center;">16</th>
+                <th style="text-align:center;">32</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ours">
+                <td style="text-align:center;"><b>Centered RankMe</b></td>
+                <td style="text-align:center;"><b>417.2/768</b></td>
+                <td style="text-align:center;"><b>413.9/768</b></td>
+                <td style="text-align:center;"><b>422.1/768</b></td>
+                <td style="text-align:center;"><b>433.1/768</b></td>
+                <td style="text-align:center;"><b>439.5/768</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">Centered RankMe of V-JEPA 2 (effective rank / latent dim)</h3>
+        <div class="quant-table-wrap" style="overflow-x:auto;">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Horizon</th>
+                <th style="text-align:center;">1</th>
+                <th style="text-align:center;">4</th>
+                <th style="text-align:center;">8</th>
+                <th style="text-align:center;">16</th>
+                <th style="text-align:center;">32</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">Centered RankMe</td>
+                <td style="text-align:center;">200.4/1024</td>
+                <td style="text-align:center;">201.5/1024</td>
+                <td style="text-align:center;">202.9/1024</td>
+                <td style="text-align:center;">205.5/1024</td>
+                <td style="text-align:center;">208.4/1024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="traj-dataset-title">Centered RankMe of DINOv2 (effective rank / latent dim)</h3>
+        <div class="quant-table-wrap">
+          <table class="quant-table" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+              <tr>
+                <th style="text-align:center;"></th>
+                <th style="text-align:center;">DINOv2 feature</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:center;">Centered RankMe</td>
+                <td style="text-align:center;">376.1/768</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <p class="rebuttal-banner rebuttal-banner-end">
+        <span class="rebuttal-horn" aria-hidden="true">&#128227;</span>
+        End of rebuttal updates.
+      </p>
+
+      <h2 class="hero-divider-title e3">Physical-Time World Modeling</h2>
+      <div class="ptflow-text-block e5">
+        <p class="subtitle">
+          PT-Flow models dynamics as a <strong>continuous latent velocity field in physical time</strong>, rather than discrete next-step prediction.
+        </p>
+
+        <ul class="hero-points">
+          <li>ODE-based future prediction in compressed latent space.</li>
+          <li>Arbitrary-time queries, and even backward prediction.</li>
+          <li>Compact latents for efficient rollouts.</li>
+        </ul>
       </div>
 
       <h2 class="hero-divider-title">Bidirectional &amp; Any-Resolution Generation</h2>
